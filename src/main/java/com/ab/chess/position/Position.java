@@ -30,17 +30,17 @@ public class Position {
         }
 
         for (int i = 48; i < 56; i++) {
-            pieces.put(i, new Pawn(Color.WHITE));
+            pieces.put(i, new Pawn(Color.BLACK));
         }
 
-        pieces.put(56, new Rook(Color.WHITE));
-        pieces.put(57, new Knight(Color.WHITE));
-        pieces.put(58, new Bishop(Color.WHITE));
-        pieces.put(59, new Queen(Color.WHITE));
-        pieces.put(60, new King(Color.WHITE));
-        pieces.put(61, new Bishop(Color.WHITE));
-        pieces.put(62, new Knight(Color.WHITE));
-        pieces.put(63, new Rook(Color.WHITE));
+        pieces.put(56, new Rook(Color.BLACK));
+        pieces.put(57, new Knight(Color.BLACK));
+        pieces.put(58, new Bishop(Color.BLACK));
+        pieces.put(59, new Queen(Color.BLACK));
+        pieces.put(60, new King(Color.BLACK));
+        pieces.put(61, new Bishop(Color.BLACK));
+        pieces.put(62, new Knight(Color.BLACK));
+        pieces.put(63, new Rook(Color.BLACK));
 
         return new Position(pieces);
     }
