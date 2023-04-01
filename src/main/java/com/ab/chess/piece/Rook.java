@@ -1,7 +1,16 @@
 package com.ab.chess.piece;
 
-public class Rook extends Piece{
+import com.ab.chess.position.Position;
+
+import java.util.List;
+
+public class Rook extends SlidingPiece{
     public Rook(Color color) {
         super(color);
+    }
+
+    @Override
+    public List<Integer> findPossibleTilesToMove(Position position, int pieceTileIndex) {
+        return null;
     }
 }

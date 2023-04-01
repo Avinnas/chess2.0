@@ -10,6 +10,9 @@ import java.util.Map;
 public class Position {
     private Map<Integer, Piece> pieces = new HashMap<>();
 
+    public Position(){
+    }
+
     private Position(Map<Integer, Piece> pieces){
         this.pieces = pieces;
     }
@@ -43,5 +46,14 @@ public class Position {
         pieces.put(63, new Rook(Color.BLACK));
 
         return new Position(pieces);
+    }
+
+    public boolean tileOccupiedBy(int tileIndex, Color color){
+        Color pieceColor = pieces.get(tileIndex).getColor();
+        return pieceColor.equals(color);
+    }
+
+    public void putPiece(int tileIndex, Piece piece){
+        pieces.put(tileIndex, piece);
     }
 }
