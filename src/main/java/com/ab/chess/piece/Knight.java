@@ -20,33 +20,33 @@ public class Knight extends Piece{
 
         if(row(tileIndex) < 7){
             if(column(tileIndex) < 6){
-                tileIndexes.add(10);
+                tileIndexes.add(10 + tileIndex);
             }
             if(column(tileIndex) > 1){
-                tileIndexes.add(6);
+                tileIndexes.add(6 + tileIndex);
             }
             if(row(tileIndex) < 6){
                 if(column(tileIndex) < 7){
-                    tileIndexes.add(17);
+                    tileIndexes.add(17 + tileIndex);
                 }
                 if(column(tileIndex) > 0){
-                    tileIndexes.add(15);
+                    tileIndexes.add(15 + tileIndex);
                 }
             }
         }
         if(row(tileIndex) > 0){
             if(column(tileIndex) < 6){
-                tileIndexes.add(-6);
+                tileIndexes.add(-6 + tileIndex);
             }
             if(column(tileIndex) > 1){
-                tileIndexes.add(-10);
+                tileIndexes.add(-10 + tileIndex);
             }
             if(row(tileIndex) > 1){
                 if(column(tileIndex) < 7){
-                    tileIndexes.add(-15);
+                    tileIndexes.add(-15 + tileIndex);
                 }
                 if(column(tileIndex) > 0){
-                    tileIndexes.add(-17);
+                    tileIndexes.add(-17 + tileIndex);
                 }
             }
         }
