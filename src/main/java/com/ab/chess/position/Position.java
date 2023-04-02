@@ -49,7 +49,11 @@ public class Position {
     }
 
     public boolean tileOccupiedBy(int tileIndex, Color color){
-        Color pieceColor = pieces.get(tileIndex).getColor();
+        Piece piece = pieces.get(tileIndex);
+        if(piece == null){
+            return false;
+        }
+        Color pieceColor = piece.getColor();
         return pieceColor.equals(color);
     }
 

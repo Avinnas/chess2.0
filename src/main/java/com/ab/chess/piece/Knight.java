@@ -1,8 +1,8 @@
 package com.ab.chess.piece;
 
+import com.ab.chess.move.MoveList;
 import com.ab.chess.position.Position;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.ab.chess.utils.TileHelper.column;
@@ -13,44 +13,50 @@ public class Knight extends Piece{
         super(color);
     }
 
+    private void addIfNotOccupied(Position position, List<Integer> tiles, int tileIndex){
+        if(!position.tileOccupiedBy(tileIndex, color)){
+            tiles.add(tileIndex);
+        }
+    }
+
     @Override
     public List<Integer> findPossibleTilesToMove(Position position, int tileIndex) {
 
-        List<Integer> tileIndexes = new ArrayList<>();
+        MoveList moveList = new MoveList(position, tileIndex, this);
 
         if(row(tileIndex) < 7){
             if(column(tileIndex) < 6){
-                tileIndexes.add(10 + tileIndex);
+                moveList.add(10);
             }
             if(column(tileIndex) > 1){
-                tileIndexes.add(6 + tileIndex);
+                moveList.add(6);
             }
             if(row(tileIndex) < 6){
                 if(column(tileIndex) < 7){
-                    tileIndexes.add(17 + tileIndex);
+                    moveList.add(17);
                 }
                 if(column(tileIndex) > 0){
-                    tileIndexes.add(15 + tileIndex);
+                    moveList.add(15);
                 }
             }
         }
         if(row(tileIndex) > 0){
             if(column(tileIndex) < 6){
-                tileIndexes.add(-6 + tileIndex);
+                moveList.add(-6);
             }
             if(column(tileIndex) > 1){
-                tileIndexes.add(-10 + tileIndex);
+                moveList.add(-10);
             }
             if(row(tileIndex) > 1){
                 if(column(tileIndex) < 7){
-                    tileIndexes.add(-15 + tileIndex);
+                    moveList.add(-15);
                 }
                 if(column(tileIndex) > 0){
-                    tileIndexes.add(-17 + tileIndex);
+                    moveList.add(-17);
                 }
             }
         }
 
-        return tileIndexes;
+        return moveList.getMoves();
     }
 }

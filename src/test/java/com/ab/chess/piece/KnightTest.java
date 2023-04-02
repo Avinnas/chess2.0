@@ -44,6 +44,27 @@ class KnightTest {
         );
     }
 
+    @Test
+    void a(){
+        Position position = Position.createStartingPosition();
+        Knight knight = new Knight(Color.WHITE);
+        position.putPiece(43, knight);
+        List<Integer> moves = knight.findPossibleTilesToMove(position, 43);
+        assertThat(moves).hasSameElementsAs(List.of(49,58,60,53, 33, 26, 28, 37));
+
+    }
+
+    @Test
+    void knightSameColor(){
+        Position position = Position.createStartingPosition();
+        Knight knight = new Knight(Color.BLACK);
+        position.putPiece(43, knight);
+        List<Integer> moves = knight.findPossibleTilesToMove(position, 43);
+        assertThat(moves).hasSameElementsAs(List.of(33, 26, 28, 37));
+
+    }
+
+
     @AllArgsConstructor
     public static class KnightTestData {
         private int input;

@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 public abstract class Piece {
-    private Color color;
+    protected Color color;
 
     public abstract List<Integer> findPossibleTilesToMove(Position position, int pieceTileIndex);
 }
