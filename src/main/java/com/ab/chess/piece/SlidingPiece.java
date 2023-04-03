@@ -19,15 +19,15 @@ public abstract class SlidingPiece extends Piece{
         return moves;
     }
     public List<Integer> findInDirection(Position position, int startIndex, Direction direction) {
-        int currentIndex = startIndex + direction.moveOneStep();
+        int currentIndex = startIndex;
         List<Integer> moves = new ArrayList<>();
 
-        while(!position.tileOccupiedBy(currentIndex, color) && !(currentIndex > 63 || currentIndex < 0)){
+        while(!position.tileOccupiedBy(currentIndex, color) && direction.isStepPossible(currentIndex)){
+            currentIndex = direction.moveOneStep(currentIndex);
             moves.add(currentIndex);
             if(position.tileOccupiedBy(currentIndex, color)){
                 break;
             }
-            currentIndex += direction.moveOneStep();
         }
         return moves;
     }
