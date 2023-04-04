@@ -12,7 +12,8 @@ public class DirectionIterator {
   }
 
   public int next() {
-    return currentTile + direction.y() * 8 + direction.x();
+    currentTile += direction.y() * 8 + direction.x();
+    return currentTile;
   }
 
   public boolean hasNext() {
