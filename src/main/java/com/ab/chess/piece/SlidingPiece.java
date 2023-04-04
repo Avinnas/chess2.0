@@ -1,7 +1,7 @@
 package com.ab.chess.piece;
 
 import com.ab.chess.move.Direction;
-import com.ab.chess.position.Position;
+import com.ab.chess.move.DirectionIterator;import com.ab.chess.position.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +21,11 @@ public abstract class SlidingPiece extends Piece {
   }
 
   public List<Integer> findInDirection(Position position, int tileIndex, Direction direction) {
-    int currentIndex = tileIndex;
     List<Integer> moves = new ArrayList<>();
+    DirectionIterator iterator = new DirectionIterator(tileIndex, direction);
 
-    while (direction.isStepPossible(currentIndex)) {
-      currentIndex = direction.moveOneStep(currentIndex);
+    while (iterator.hasNext()) {
+      int currentIndex = iterator.next();
       if (position.tileOccupiedByFriend(currentIndex, color)) {
         break;
       }
