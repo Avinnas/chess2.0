@@ -1,59 +1,37 @@
 package com.ab.chess.piece;
 
+import com.ab.chess.move.Direction;
 import com.ab.chess.move.MoveList;
+import com.ab.chess.move.TileIterator;
 import com.ab.chess.position.Position;
-
 import java.util.List;
 
-import static com.ab.chess.utils.TileHelper.column;
-import static com.ab.chess.utils.TileHelper.row;
-
 public class Knight extends Piece {
+
+  private static final List<Direction> moveDirections =
+          List.of(
+                  new Direction(2, 1),
+                  new Direction(2, -1),
+                  new Direction(-2, 1),
+                  new Direction(-2, -1),
+                  new Direction(-1, 2),
+                  new Direction(-1, -2),
+                  new Direction(1, -2),
+                  new Direction(1, 2));
+
   public Knight(Color color) {
     super(color);
-  }
-
-  private void addIfNotOccupied(Position position, List<Integer> tiles, int tileIndex) {
-    if (!position.tileOccupiedByFriend(tileIndex, color)) {
-      tiles.add(tileIndex);
-    }
   }
 
   @Override
   public List<Integer> findPossibleTilesToMove(Position position, int tileIndex) {
 
-    MoveList moveList = new MoveList(position, tileIndex, this);
+    MoveList moveList = new MoveList(position,  this);
 
-    if (row(tileIndex) < 7) {
-      if (column(tileIndex) < 6) {
-        moveList.add(10);
-      }
-      if (column(tileIndex) > 1) {
-        moveList.add(6);
-      }
-      if (row(tileIndex) < 6) {
-        if (column(tileIndex) < 7) {
-          moveList.add(17);
-        }
-        if (column(tileIndex) > 0) {
-          moveList.add(15);
-        }
-      }
-    }
-    if (row(tileIndex) > 0) {
-      if (column(tileIndex) < 6) {
-        moveList.add(-6);
-      }
-      if (column(tileIndex) > 1) {
-        moveList.add(-10);
-      }
-      if (row(tileIndex) > 1) {
-        if (column(tileIndex) < 7) {
-          moveList.add(-15);
-        }
-        if (column(tileIndex) > 0) {
-          moveList.add(-17);
-        }
+    for (Direction direction : moveDirections){
+      TileIterator iterator = new TileIterator(tileIndex, direction);
+      if(iterator.hasNext()){
+        moveList.add(iterator.next());
       }
     }
 
