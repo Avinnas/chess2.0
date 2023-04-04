@@ -48,13 +48,22 @@ public class Position {
         return new Position(pieces);
     }
 
-    public boolean tileOccupiedBy(int tileIndex, Color color){
+  public boolean tileOccupiedByFriend(int tileIndex, Color color) {
         Piece piece = pieces.get(tileIndex);
         if(piece == null){
             return false;
         }
         Color pieceColor = piece.getColor();
         return pieceColor.equals(color);
+    }
+
+    public boolean tileOccupiedByEnemy(int tileIndex, Color color){
+        Piece piece = pieces.get(tileIndex);
+        if(piece == null){
+            return false;
+        }
+        Color pieceColor = piece.getColor();
+        return !pieceColor.equals(color);
     }
 
     public void putPiece(int tileIndex, Piece piece){

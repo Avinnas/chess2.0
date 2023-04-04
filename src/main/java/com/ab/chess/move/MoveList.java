@@ -19,7 +19,7 @@ public class MoveList {
     }
 
     public void add(Integer tileIndex){
-        if(!position.tileOccupiedBy(tileIndex + pieceTile, piece.getColor())){
+    if (!position.tileOccupiedByFriend(tileIndex + pieceTile, piece.getColor())) {
             moves.add(tileIndex + pieceTile);
         }
     }

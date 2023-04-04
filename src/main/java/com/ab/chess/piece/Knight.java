@@ -14,7 +14,7 @@ public class Knight extends Piece{
     }
 
     private void addIfNotOccupied(Position position, List<Integer> tiles, int tileIndex){
-        if(!position.tileOccupiedBy(tileIndex, color)){
+    if (!position.tileOccupiedByFriend(tileIndex, color)) {
             tiles.add(tileIndex);
         }
     }
