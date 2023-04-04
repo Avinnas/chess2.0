@@ -2,11 +2,11 @@ package com.ab.chess.move;
 
 import com.ab.chess.utils.TileHelper;
 
-public class DirectionIterator {
+public class TileIterator {
   private final Direction direction;
   private int currentTile;
 
-  public DirectionIterator(int startTile, Direction direction) {
+  public TileIterator(int startTile, Direction direction) {
     this.direction = direction;
     this.currentTile = startTile;
   }
