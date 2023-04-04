@@ -20,9 +20,9 @@ public class TileIterator {
     int nextColumn = TileHelper.column(currentTile) + direction.x();
     int nextRow = TileHelper.row(currentTile) + direction.y();
     return inBounds(nextRow) && inBounds(nextColumn);
-
   }
-  private boolean inBounds(int index){
+
+  private boolean inBounds(int index) {
     return index <= 7 && index >= 0;
   }
 }

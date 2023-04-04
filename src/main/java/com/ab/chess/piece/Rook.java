@@ -5,21 +5,17 @@ import com.ab.chess.position.Position;
 
 import java.util.List;
 
-public class Rook extends SlidingPiece{
+public class Rook extends SlidingPiece {
 
-    private static final List<Direction> moveDirections = List.of(
-            new Direction(1, 0),
-            new Direction(0, 1),
-            new Direction(-1, 0),
-            new Direction(0, -1)
-    );
+  private static final List<Direction> moveDirections =
+      List.of(new Direction(1, 0), new Direction(0, 1), new Direction(-1, 0), new Direction(0, -1));
 
-    public Rook(Color color) {
-        super(color);
-    }
+  public Rook(Color color) {
+    super(color);
+  }
 
-    @Override
-    public List<Integer> findPossibleTilesToMove(Position position, int pieceTileIndex) {
-        return super.findInDirections(position, pieceTileIndex, moveDirections);
-    }
+  @Override
+  public List<Integer> findPossibleTilesToMove(Position position, int pieceTileIndex) {
+    return super.findInDirections(position, pieceTileIndex, moveDirections);
+  }
 }

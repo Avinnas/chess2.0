@@ -4,13 +4,13 @@ import com.ab.chess.position.Position;
 
 import java.util.List;
 
-public class Pawn extends Piece{
-    public Pawn(Color color) {
-        super(color);
-    }
+public class Pawn extends Piece {
+  public Pawn(Color color) {
+    super(color);
+  }
 
-    @Override
-    public List<Integer> findPossibleTilesToMove(Position position, int pieceTileIndex) {
-        return null;
-    }
+  @Override
+  public List<Integer> findPossibleTilesToMove(Position position, int pieceTileIndex) {
+    return null;
+  }
 }

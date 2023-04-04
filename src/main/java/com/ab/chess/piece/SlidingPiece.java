@@ -1,7 +1,8 @@
 package com.ab.chess.piece;
 
 import com.ab.chess.move.Direction;
-import com.ab.chess.move.TileIterator;import com.ab.chess.position.Position;
+import com.ab.chess.move.TileIterator;
+import com.ab.chess.position.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +31,9 @@ public abstract class SlidingPiece extends Piece {
         break;
       }
       moves.add(currentIndex);
-      if(position.tileOccupiedByEnemy(currentIndex, color)){
+      if (position.tileOccupiedByEnemy(currentIndex, color)) {
         break;
       }
-
     }
     return moves;
   }
