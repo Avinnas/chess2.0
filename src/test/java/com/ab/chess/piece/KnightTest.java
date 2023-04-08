@@ -21,7 +21,7 @@ class KnightTest {
         Position position = new Position();
         Knight knight = new Knight(Color.WHITE);
         position.putPiece(knightTestData.input, knight);
-        List<Integer> moves = knight.findPossibleTilesToMove(position, knightTestData.input);
+    List<Integer> moves = knight.findPossibleMoves(position, knightTestData.input);
 
         assertThat(moves).hasSameElementsAs(knightTestData.output);
     }
@@ -49,7 +49,7 @@ class KnightTest {
         Position position = Position.createStartingPosition();
         Knight knight = new Knight(Color.WHITE);
         position.putPiece(43, knight);
-        List<Integer> moves = knight.findPossibleTilesToMove(position, 43);
+    List<Integer> moves = knight.findPossibleMoves(position, 43);
         assertThat(moves).hasSameElementsAs(List.of(49,58,60,53, 33, 26, 28, 37));
 
     }
@@ -59,7 +59,7 @@ class KnightTest {
         Position position = Position.createStartingPosition();
         Knight knight = new Knight(Color.BLACK);
         position.putPiece(43, knight);
-        List<Integer> moves = knight.findPossibleTilesToMove(position, 43);
+    List<Integer> moves = knight.findPossibleMoves(position, 43);
         assertThat(moves).hasSameElementsAs(List.of(33, 26, 28, 37));
 
     }

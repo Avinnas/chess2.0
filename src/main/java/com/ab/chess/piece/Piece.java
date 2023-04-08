@@ -11,5 +11,7 @@ import java.util.List;
 public abstract class Piece {
   protected Color color;
 
-  public abstract List<Integer> findPossibleTilesToMove(Position position, int pieceTileIndex);
+  public abstract List<Integer> findPossibleMoves(Position position, int pieceTileIndex);
+
+  public abstract List<Integer> findControlledTiles(Position position, int pieceTileIndex);
 }

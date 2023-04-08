@@ -22,7 +22,12 @@ public class Queen extends SlidingPiece {
   }
 
   @Override
-  public List<Integer> findPossibleTilesToMove(Position position, int pieceTileIndex) {
-    return super.findInDirections(position, pieceTileIndex, moveDirections);
+  public List<Integer> findPossibleMoves(Position position, int pieceTileIndex) {
+    return super.findMovesInDirections(position, pieceTileIndex, moveDirections);
+  }
+
+  @Override
+  public List<Integer> findControlledTiles(Position position, int pieceTileIndex) {
+    return super.findControlledTilesInDirections(position, pieceTileIndex, moveDirections);
   }
 }

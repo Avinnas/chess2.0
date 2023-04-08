@@ -10,7 +10,13 @@ public class Pawn extends Piece {
   }
 
   @Override
-  public List<Integer> findPossibleTilesToMove(Position position, int pieceTileIndex) {
+  public List<Integer> findPossibleMoves(Position position, int pieceTileIndex) {
     return null;
   }
+
+  @Override
+  public List<Integer> findControlledTiles(Position position, int pieceTileIndex) {
+    return null;
+  }
+
 }

@@ -24,7 +24,7 @@ class SlidingPieceTest {
     slidingPiece.color = Color.BLACK;
 
     List<Integer> actual =
-        slidingPiece.findInDirections(
+        slidingPiece.findMovesInDirections(
             position, slidingPieceTestData.tileIndex, slidingPieceTestData.directions);
 
     List<Integer> expected = slidingPieceTestData.expected;
@@ -65,7 +65,7 @@ class SlidingPieceTest {
     Position position = Position.createStartingPosition();
 
     List<Integer> actual =
-        slidingPiece.findInDirections(
+        slidingPiece.findMovesInDirections(
             position, slidingPieceTestData.tileIndex, slidingPieceTestData.directions);
 
     List<Integer> expected = slidingPieceTestData.expected;
@@ -76,12 +76,12 @@ class SlidingPieceTest {
     return Stream.of(
         Arguments.of(
             Named.of(
-                "Piece stops when blocked",
+                "Piece stops when blocked by friend",
                 new SlidingPieceTestData(35, List.of(new Direction(0, 1)), List.of(43)))),
         Arguments.of(
             Named.of(
                 "Piece stops after capturing enemy",
-                new SlidingPieceTestData(35, List.of(new Direction(0, -1)), List.of(27,19, 11)))));
+                new SlidingPieceTestData(35, List.of(new Direction(0, -1)), List.of(27, 19, 11)))));
   }
 
   @AllArgsConstructor
