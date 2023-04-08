@@ -65,6 +65,10 @@ public class Position {
     return !pieceColor.equals(color);
   }
 
+  public boolean tileEmpty(int tileIndex){
+    return pieces.get(tileIndex) == null;
+  }
+
   public void putPiece(int tileIndex, Piece piece) {
     pieces.put(tileIndex, piece);
   }
