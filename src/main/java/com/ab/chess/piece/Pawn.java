@@ -18,5 +18,4 @@ public class Pawn extends Piece {
   public List<Integer> findControlledTiles(Position position, int pieceTileIndex) {
     return null;
   }
-
 }

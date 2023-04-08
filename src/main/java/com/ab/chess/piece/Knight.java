@@ -1,7 +1,8 @@
 package com.ab.chess.piece;
 
 import com.ab.chess.move.Direction;
-import com.ab.chess.move.SearchMode;import com.ab.chess.move.TileIterator;
+import com.ab.chess.move.SearchMode;
+import com.ab.chess.move.TileIterator;
 import com.ab.chess.position.Position;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class Knight extends Piece {
     return findTiles(position, tileIndex, SearchMode.CONTROLLED_TILES);
   }
 
-  private List<Integer> findTiles(Position position, int tileIndex, SearchMode searchMode){
+  private List<Integer> findTiles(Position position, int tileIndex, SearchMode searchMode) {
     List<Integer> moves = new ArrayList<>();
 
     for (Direction direction : moveDirections) {
@@ -46,9 +47,7 @@ public class Knight extends Piece {
       }
     }
     return moves;
-
   }
-
 
   private boolean moveIsValid(Position position, int tile) {
     return !position.tileOccupiedByFriend(tile, color);

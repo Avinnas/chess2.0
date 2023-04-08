@@ -52,5 +52,4 @@ public abstract class SlidingPiece extends Piece {
     }
     return moves;
   }
-
-  }
+}

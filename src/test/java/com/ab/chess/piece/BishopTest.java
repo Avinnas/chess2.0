@@ -1,13 +1,11 @@
 package com.ab.chess.piece;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
 
 class BishopTest {
 
-    @Test
-    void findPossibleTilesToMove() {
-
-    }
+  @Test
+  void findPossibleTilesToMove() {}
 }
