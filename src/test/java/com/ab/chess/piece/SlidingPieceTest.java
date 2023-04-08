@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Named;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -28,7 +29,7 @@ class SlidingPieceTest {
             position, slidingPieceTestData.tileIndex, slidingPieceTestData.directions);
 
     List<Integer> expected = slidingPieceTestData.expected;
-    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).hasSameElementsAs(expected);
   }
 
   static Stream<Arguments> findInDirectionEmptyBoard() {
@@ -69,7 +70,20 @@ class SlidingPieceTest {
             position, slidingPieceTestData.tileIndex, slidingPieceTestData.directions);
 
     List<Integer> expected = slidingPieceTestData.expected;
-    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).hasSameElementsAs(expected);
+  }
+
+  @Test
+  void findControlledTilesInDirections_nonEmptyBoard_returnsCorrectMoves() {
+    SlidingPiece slidingPiece = mock(SlidingPiece.class, Mockito.CALLS_REAL_METHODS);
+    slidingPiece.color = Color.BLACK;
+    Position position = Position.createStartingPosition();
+    List<Direction> directions = List.of(new Direction(0, 1), new Direction(0, -1));
+
+    List<Integer> actual = slidingPiece.findControlledTilesInDirections(position, 35, directions);
+
+    List<Integer> expected = List.of(27, 19, 11, 43, 51);
+    assertThat(actual).hasSameElementsAs(expected);
   }
 
   static Stream<Arguments> findInDirectionNonEmptyBoard() {

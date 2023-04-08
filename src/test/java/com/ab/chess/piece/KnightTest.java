@@ -17,7 +17,7 @@ class KnightTest {
 
   @ParameterizedTest(name = "{index}: {0} ")
   @MethodSource("arguments")
-  void findPossibleTilesToMove_emptyBoard_returnsCorrectMoves(KnightTestData knightTestData) {
+  void findPossibleMoves_emptyBoard_returnsCorrectMoves(KnightTestData knightTestData) {
     Position position = new Position();
     Knight knight = new Knight(Color.WHITE);
     position.putPiece(knightTestData.input, knight);
@@ -63,21 +63,39 @@ class KnightTest {
   }
 
   @Test
-  void a() {
+  void findPossibleMoves_defaultStartingBoard_knightCanCaptureEnemy() {
     Position position = Position.createStartingPosition();
     Knight knight = new Knight(Color.WHITE);
     position.putPiece(43, knight);
+
     List<Integer> moves = knight.findPossibleMoves(position, 43);
-    assertThat(moves).hasSameElementsAs(List.of(49, 58, 60, 53, 33, 26, 28, 37));
+
+    List<Integer> expected = List.of(49, 58, 60, 53, 33, 26, 28, 37);
+    assertThat(moves).hasSameElementsAs(expected);
   }
 
   @Test
-  void knightSameColor() {
+  void findPossibleMoves_defaultStartingBoard_knightCannotCaptureFriend() {
     Position position = Position.createStartingPosition();
     Knight knight = new Knight(Color.BLACK);
     position.putPiece(43, knight);
+
     List<Integer> moves = knight.findPossibleMoves(position, 43);
-    assertThat(moves).hasSameElementsAs(List.of(33, 26, 28, 37));
+
+    List<Integer> expected = List.of(33, 26, 28, 37);
+    assertThat(moves).hasSameElementsAs(expected);
+  }
+
+  @Test
+  void findControlledTiles_defaultStartingBoard_knightControlsTilesOccupiedByFriend() {
+    Position position = Position.createStartingPosition();
+    Knight knight = new Knight(Color.BLACK);
+    position.putPiece(43, knight);
+
+    List<Integer> moves = knight.findControlledTiles(position, 43);
+
+    List<Integer> expected = List.of(49, 58, 60, 53, 33, 26, 28, 37);
+    assertThat(moves).hasSameElementsAs(expected);
   }
 
   @AllArgsConstructor
