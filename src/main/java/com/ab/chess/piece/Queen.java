@@ -8,14 +8,14 @@ import java.util.List;
 public class Queen extends SlidingPiece {
   private static final List<Direction> moveDirections =
       List.of(
-          new Direction(1, 0),
-          new Direction(0, 1),
-          new Direction(-1, 0),
-          new Direction(0, -1),
-          new Direction(1, 1),
-          new Direction(-1, -1),
-          new Direction(1, -1),
-          new Direction(-1, 1));
+          Direction.UP,
+          Direction.DOWN,
+          Direction.LEFT,
+          Direction.RIGHT,
+          Direction.LEFT_UP,
+          Direction.RIGHT_UP,
+          Direction.LEFT_DOWN,
+          Direction.RIGHT_DOWN);
 
   public Queen(Color color) {
     super(color);

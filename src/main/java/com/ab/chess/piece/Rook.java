@@ -8,7 +8,11 @@ import java.util.List;
 public class Rook extends SlidingPiece {
 
   private static final List<Direction> moveDirections =
-      List.of(new Direction(1, 0), new Direction(0, 1), new Direction(-1, 0), new Direction(0, -1));
+          List.of(
+                  Direction.UP,
+                  Direction.DOWN,
+                  Direction.LEFT,
+                  Direction.RIGHT);
 
   public Rook(Color color) {
     super(color);

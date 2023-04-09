@@ -11,14 +11,14 @@ public class Knight extends Piece {
 
   private static final List<Direction> moveDirections =
       List.of(
-          new Direction(2, 1),
-          new Direction(2, -1),
-          new Direction(-2, 1),
-          new Direction(-2, -1),
-          new Direction(-1, 2),
-          new Direction(-1, -2),
-          new Direction(1, -2),
-          new Direction(1, 2));
+              Direction.L_SHAPE_UP_LEFT,
+              Direction.L_SHAPE_UP_RIGHT,
+              Direction.L_SHAPE_DOWN_LEFT,
+              Direction.L_SHAPE_DOWN_RIGHT,
+              Direction.L_SHAPE_LEFT_UP,
+              Direction.L_SHAPE_LEFT_DOWN,
+              Direction.L_SHAPE_RIGHT_UP,
+              Direction.L_SHAPE_RIGHT_DOWN);
 
   public Knight(Color color) {
     super(color);

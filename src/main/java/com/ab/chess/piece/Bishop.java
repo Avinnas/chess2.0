@@ -7,8 +7,11 @@ import java.util.List;
 
 public class Bishop extends SlidingPiece {
   private static final List<Direction> moveDirections =
-      List.of(
-          new Direction(1, 1), new Direction(-1, -1), new Direction(1, -1), new Direction(-1, 1));
+          List.of(
+                  Direction.LEFT_UP,
+                  Direction.RIGHT_UP,
+                  Direction.LEFT_DOWN,
+                  Direction.RIGHT_DOWN);
 
   public Bishop(Color color) {
     super(color);

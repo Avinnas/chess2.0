@@ -37,23 +37,23 @@ class SlidingPieceTest {
         Arguments.of(
             Named.of(
                 "Piece can't move",
-                new SlidingPieceTestData(0, List.of(new Direction(-1, 0)), List.of()))),
+                new SlidingPieceTestData(0, List.of(Direction.LEFT), List.of()))),
         Arguments.of(
             Named.of(
                 "Piece can move in straight line",
                 new SlidingPieceTestData(
-                    0, List.of(new Direction(1, 0)), List.of(1, 2, 3, 4, 5, 6, 7)))),
+                    0, List.of(Direction.RIGHT), List.of(1, 2, 3, 4, 5, 6, 7)))),
         Arguments.of(
             Named.of(
                 "Piece can move in diagonal line",
                 new SlidingPieceTestData(
-                    36, List.of(new Direction(-1, -1)), List.of(27, 18, 9, 0)))),
+                    36, List.of(Direction.LEFT_DOWN), List.of(27, 18, 9, 0)))),
         Arguments.of(
             Named.of(
                 "Piece can move in multiple directions",
                 new SlidingPieceTestData(
                     36,
-                    List.of(new Direction(-1, -1), new Direction(1, 0)),
+                    List.of(Direction.LEFT_DOWN, Direction.RIGHT),
                     List.of(27, 18, 9, 0, 37, 38, 39)))));
   }
 
@@ -78,7 +78,7 @@ class SlidingPieceTest {
     SlidingPiece slidingPiece = mock(SlidingPiece.class, Mockito.CALLS_REAL_METHODS);
     slidingPiece.color = Color.BLACK;
     Position position = Position.createStartingPosition();
-    List<Direction> directions = List.of(new Direction(0, 1), new Direction(0, -1));
+    List<Direction> directions = List.of(Direction.UP, Direction.DOWN);
 
     List<Integer> actual = slidingPiece.findControlledTilesInDirections(position, 35, directions);
 
@@ -91,11 +91,11 @@ class SlidingPieceTest {
         Arguments.of(
             Named.of(
                 "Piece stops when blocked by friend",
-                new SlidingPieceTestData(35, List.of(new Direction(0, 1)), List.of(43)))),
+                new SlidingPieceTestData(35, List.of(Direction.UP), List.of(43)))),
         Arguments.of(
             Named.of(
                 "Piece stops after capturing enemy",
-                new SlidingPieceTestData(35, List.of(new Direction(0, -1)), List.of(27, 19, 11)))));
+                new SlidingPieceTestData(35, List.of(Direction.DOWN), List.of(27, 19, 11)))));
   }
 
   @AllArgsConstructor

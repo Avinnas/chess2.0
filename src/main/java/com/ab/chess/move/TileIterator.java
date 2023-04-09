@@ -12,13 +12,13 @@ public class TileIterator {
   }
 
   public int next() {
-    currentTile += direction.y() * 8 + direction.x();
+    currentTile += direction.getY() * 8 + direction.getX();
     return currentTile;
   }
 
   public boolean hasNext() {
-    int nextColumn = TileHelper.column(currentTile) + direction.x();
-    int nextRow = TileHelper.row(currentTile) + direction.y();
+    int nextColumn = TileHelper.column(currentTile) + direction.getX();
+    int nextRow = TileHelper.row(currentTile) + direction.getY();
     return inBounds(nextRow) && inBounds(nextColumn);
   }
 
