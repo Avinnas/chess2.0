@@ -40,9 +40,14 @@ class SlidingPieceTest {
                 new SlidingPieceTestData(0, List.of(Direction.LEFT), List.of()))),
         Arguments.of(
             Named.of(
-                "Piece can move in straight line",
+                "Piece can move in straight (right) line",
                 new SlidingPieceTestData(
                     0, List.of(Direction.RIGHT), List.of(1, 2, 3, 4, 5, 6, 7)))),
+        Arguments.of(
+                Named.of(
+                        "Piece can move in straight (down) line",
+                        new SlidingPieceTestData(
+                                36, List.of(Direction.DOWN), List.of(28, 20, 12, 4)))),
         Arguments.of(
             Named.of(
                 "Piece can move in diagonal line",
