@@ -43,7 +43,7 @@ public class King extends Piece {
         int currentTile = iterator.next();
         switch (searchMode) {
           case POSSIBLE_MOVES -> {
-            if (!position.tileOccupiedByFriend(pieceTileIndex, color)) {
+            if (!position.tileOccupiedByFriend(currentTile, color)) {
               moves.add(currentTile);
             }
           }
