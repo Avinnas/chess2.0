@@ -19,9 +19,9 @@ class KnightTest {
   @MethodSource("arguments")
   void findPossibleMoves_emptyBoard_returnsCorrectMoves(KnightTestData knightTestData) {
     Position position = new Position();
-    Knight knight = new Knight(Color.WHITE);
-    position.putPiece(knightTestData.input, knight);
-    List<Integer> moves = knight.findPossibleMoves(position, knightTestData.input);
+    Knight knight = new Knight(Color.WHITE, knightTestData.input);
+    position.putPiece(knight);
+    List<Integer> moves = knight.findPossibleMoves(position);
 
     assertThat(moves).hasSameElementsAs(knightTestData.output);
   }
@@ -65,10 +65,10 @@ class KnightTest {
   @Test
   void findPossibleMoves_defaultStartingBoard_knightCanCaptureEnemy() {
     Position position = Position.createStartingPosition();
-    Knight knight = new Knight(Color.WHITE);
-    position.putPiece(43, knight);
+    Knight knight = new Knight(Color.WHITE, 43);
+    position.putPiece(knight);
 
-    List<Integer> moves = knight.findPossibleMoves(position, 43);
+    List<Integer> moves = knight.findPossibleMoves(position);
 
     List<Integer> expected = List.of(49, 58, 60, 53, 33, 26, 28, 37);
     assertThat(moves).hasSameElementsAs(expected);
@@ -77,10 +77,10 @@ class KnightTest {
   @Test
   void findPossibleMoves_defaultStartingBoard_knightCannotCaptureFriend() {
     Position position = Position.createStartingPosition();
-    Knight knight = new Knight(Color.BLACK);
-    position.putPiece(43, knight);
+    Knight knight = new Knight(Color.BLACK, 43);
+    position.putPiece(knight);
 
-    List<Integer> moves = knight.findPossibleMoves(position, 43);
+    List<Integer> moves = knight.findPossibleMoves(position);
 
     List<Integer> expected = List.of(33, 26, 28, 37);
     assertThat(moves).hasSameElementsAs(expected);
@@ -89,10 +89,10 @@ class KnightTest {
   @Test
   void findControlledTiles_defaultStartingBoard_knightControlsTilesOccupiedByFriend() {
     Position position = Position.createStartingPosition();
-    Knight knight = new Knight(Color.BLACK);
-    position.putPiece(43, knight);
+    Knight knight = new Knight(Color.BLACK, 43);
+    position.putPiece(knight);
 
-    List<Integer> moves = knight.findControlledTiles(position, 43);
+    List<Integer> moves = knight.findControlledTiles(position);
 
     List<Integer> expected = List.of(49, 58, 60, 53, 33, 26, 28, 37);
     assertThat(moves).hasSameElementsAs(expected);

@@ -9,31 +9,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class SlidingPiece extends Piece {
-  public SlidingPiece(Color color) {
-    super(color);
+
+  public SlidingPiece(Color color, int tileIndex) {
+    super(color, tileIndex);
   }
 
   public List<Integer> findMovesInDirections(
-      Position position, int tileIndex, List<Direction> directions) {
-    return findInDirections(position, tileIndex, directions, SearchMode.POSSIBLE_MOVES);
+      Position position, List<Direction> directions) {
+    return findInDirections(position, directions, SearchMode.POSSIBLE_MOVES);
   }
 
   public List<Integer> findControlledTilesInDirections(
-      Position position, int tileIndex, List<Direction> directions) {
-    return findInDirections(position, tileIndex, directions, SearchMode.CONTROLLED_TILES);
+      Position position, List<Direction> directions) {
+    return findInDirections(position, directions, SearchMode.CONTROLLED_TILES);
   }
 
   public List<Integer> findInDirections(
-      Position position, int tileIndex, List<Direction> directions, SearchMode searchMode) {
+      Position position, List<Direction> directions, SearchMode searchMode) {
     List<Integer> moves = new ArrayList<>();
     for (Direction direction : directions) {
-      moves.addAll(findInDirection(position, tileIndex, direction, searchMode));
+      moves.addAll(findInDirection(position, direction, searchMode));
     }
     return moves;
   }
 
   public List<Integer> findInDirection(
-      Position position, int tileIndex, Direction direction, SearchMode searchMode) {
+      Position position, Direction direction, SearchMode searchMode) {
     List<Integer> moves = new ArrayList<>();
     TileIterator iterator = new TileIterator(tileIndex, direction);
 

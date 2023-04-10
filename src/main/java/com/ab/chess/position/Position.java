@@ -18,31 +18,31 @@ public class Position {
 
   public static Position createStartingPosition() {
     Map<Integer, Piece> pieces = new HashMap<>();
-    pieces.put(0, new Rook(Color.WHITE));
-    pieces.put(1, new Knight(Color.WHITE));
-    pieces.put(2, new Bishop(Color.WHITE));
-    pieces.put(3, new Queen(Color.WHITE));
-    pieces.put(4, new King(Color.WHITE));
-    pieces.put(5, new Bishop(Color.WHITE));
-    pieces.put(6, new Knight(Color.WHITE));
-    pieces.put(7, new Rook(Color.WHITE));
+    pieces.put(0, new Rook(Color.WHITE, 0));
+    pieces.put(1, new Knight(Color.WHITE, 1));
+    pieces.put(2, new Bishop(Color.WHITE, 2));
+    pieces.put(3, new Queen(Color.WHITE, 3));
+    pieces.put(4, new King(Color.WHITE, 4));
+    pieces.put(5, new Bishop(Color.WHITE, 5));
+    pieces.put(6, new Knight(Color.WHITE,6));
+    pieces.put(7, new Rook(Color.WHITE, 7));
 
     for (int i = 8; i < 16; i++) {
-      pieces.put(i, new Pawn(Color.WHITE));
+      pieces.put(i, new Pawn(Color.WHITE, i));
     }
 
     for (int i = 48; i < 56; i++) {
-      pieces.put(i, new Pawn(Color.BLACK));
+      pieces.put(i, new Pawn(Color.BLACK, i));
     }
 
-    pieces.put(56, new Rook(Color.BLACK));
-    pieces.put(57, new Knight(Color.BLACK));
-    pieces.put(58, new Bishop(Color.BLACK));
-    pieces.put(59, new Queen(Color.BLACK));
-    pieces.put(60, new King(Color.BLACK));
-    pieces.put(61, new Bishop(Color.BLACK));
-    pieces.put(62, new Knight(Color.BLACK));
-    pieces.put(63, new Rook(Color.BLACK));
+    pieces.put(56, new Rook(Color.BLACK, 56));
+    pieces.put(57, new Knight(Color.BLACK, 57));
+    pieces.put(58, new Bishop(Color.BLACK, 58));
+    pieces.put(59, new Queen(Color.BLACK, 59));
+    pieces.put(60, new King(Color.BLACK, 60));
+    pieces.put(61, new Bishop(Color.BLACK, 61));
+    pieces.put(62, new Knight(Color.BLACK, 62));
+    pieces.put(63, new Rook(Color.BLACK, 63));
 
     return new Position(pieces);
   }
@@ -69,7 +69,7 @@ public class Position {
     return pieces.get(tileIndex) == null;
   }
 
-  public void putPiece(int tileIndex, Piece piece) {
-    pieces.put(tileIndex, piece);
+  public void putPiece(Piece piece) {
+    pieces.put(piece.getTileIndex(), piece);
   }
 }

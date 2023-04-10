@@ -8,11 +8,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RookTest {
   @Test
   void findPossibleMoves_defaultStartingBoard_returnsCorrectMoves() {
-    Rook rook = new Rook(Color.WHITE);
+    Rook rook = new Rook(Color.WHITE, 16);
     Position position = Position.createStartingPosition();
-    position.putPiece(16, rook);
+    position.putPiece(rook);
 
-    List<Integer> actual = rook.findPossibleMoves(position, 16);
+    List<Integer> actual = rook.findPossibleMoves(position);
     List<Integer> expected = List.of(24, 32, 40, 48, 17, 18, 19, 20, 21, 22, 23);
 
     assertThat(actual).hasSameElementsAs(expected);
@@ -20,11 +20,11 @@ public class RookTest {
 
   @Test
   void findControlledTiles_defaultStartingBoard_returnsCorrectMoves() {
-    Rook rook = new Rook(Color.WHITE);
+    Rook rook = new Rook(Color.WHITE, 16);
     Position position = Position.createStartingPosition();
-    position.putPiece(16, rook);
+    position.putPiece(rook);
 
-    List<Integer> actual = rook.findControlledTiles(position, 16);
+    List<Integer> actual = rook.findControlledTiles(position);
     List<Integer> expected = List.of(24, 32, 40, 48, 17, 18, 19, 20, 21, 22, 23, 8);
 
     assertThat(actual).hasSameElementsAs(expected);

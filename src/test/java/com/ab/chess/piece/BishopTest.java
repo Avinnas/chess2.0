@@ -10,11 +10,11 @@ class BishopTest {
 
   @Test
   void findPossibleMoves_defaultStartingBoard_returnsCorrectMoves() {
-    Bishop bishop = new Bishop(Color.WHITE);
+    Bishop bishop = new Bishop(Color.WHITE, 16);
     Position position = Position.createStartingPosition();
-    position.putPiece(16, bishop);
+    position.putPiece(bishop);
 
-    List<Integer> actual = bishop.findPossibleMoves(position, 16);
+    List<Integer> actual = bishop.findPossibleMoves(position);
     List<Integer> expected = List.of(25, 34, 43, 52);
 
     assertThat(actual).hasSameElementsAs(expected);
@@ -22,11 +22,11 @@ class BishopTest {
 
   @Test
   void findControlledTiles_defaultStartingBoard_returnsCorrectMoves() {
-    Bishop bishop = new Bishop(Color.WHITE);
+    Bishop bishop = new Bishop(Color.WHITE, 16);
     Position position = Position.createStartingPosition();
-    position.putPiece(16, bishop);
+    position.putPiece(bishop);
 
-    List<Integer> actual = bishop.findControlledTiles(position, 16);
+    List<Integer> actual = bishop.findControlledTiles(position);
     List<Integer> expected = List.of(9, 25, 34, 43, 52);
 
     assertThat(actual).hasSameElementsAs(expected);

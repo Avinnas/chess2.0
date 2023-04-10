@@ -14,6 +14,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mockito;
+import org.springframework.test.util.ReflectionTestUtils;
 
 class SlidingPieceTest {
 
@@ -22,11 +23,12 @@ class SlidingPieceTest {
   void findInDirections_emptyBoard_returnsCorrectMoves(SlidingPieceTestData slidingPieceTestData) {
     SlidingPiece slidingPiece = mock(SlidingPiece.class, Mockito.CALLS_REAL_METHODS);
     Position position = new Position();
-    slidingPiece.color = Color.BLACK;
+    ReflectionTestUtils.setField(slidingPiece, "color", Color.BLACK);
+    ReflectionTestUtils.setField(slidingPiece, "tileIndex", slidingPieceTestData.tileIndex);
 
     List<Integer> actual =
         slidingPiece.findMovesInDirections(
-            position, slidingPieceTestData.tileIndex, slidingPieceTestData.directions);
+            position, slidingPieceTestData.directions);
 
     List<Integer> expected = slidingPieceTestData.expected;
     assertThat(actual).hasSameElementsAs(expected);
@@ -67,12 +69,13 @@ class SlidingPieceTest {
   void findInDirections_nonEmptyBoard_returnsCorrectMoves(
       SlidingPieceTestData slidingPieceTestData) {
     SlidingPiece slidingPiece = mock(SlidingPiece.class, Mockito.CALLS_REAL_METHODS);
-    slidingPiece.color = Color.BLACK;
+    ReflectionTestUtils.setField(slidingPiece, "color", Color.BLACK);
+    ReflectionTestUtils.setField(slidingPiece, "tileIndex", slidingPieceTestData.tileIndex);
     Position position = Position.createStartingPosition();
 
     List<Integer> actual =
         slidingPiece.findMovesInDirections(
-            position, slidingPieceTestData.tileIndex, slidingPieceTestData.directions);
+            position, slidingPieceTestData.directions);
 
     List<Integer> expected = slidingPieceTestData.expected;
     assertThat(actual).hasSameElementsAs(expected);
@@ -81,11 +84,13 @@ class SlidingPieceTest {
   @Test
   void findControlledTilesInDirections_nonEmptyBoard_returnsCorrectMoves() {
     SlidingPiece slidingPiece = mock(SlidingPiece.class, Mockito.CALLS_REAL_METHODS);
-    slidingPiece.color = Color.BLACK;
+    ReflectionTestUtils.setField(slidingPiece, "color", Color.BLACK);
+    ReflectionTestUtils.setField(slidingPiece, "tileIndex", 35);
+
     Position position = Position.createStartingPosition();
     List<Direction> directions = List.of(Direction.UP, Direction.DOWN);
 
-    List<Integer> actual = slidingPiece.findControlledTilesInDirections(position, 35, directions);
+    List<Integer> actual = slidingPiece.findControlledTilesInDirections(position, directions);
 
     List<Integer> expected = List.of(27, 19, 11, 43, 51);
     assertThat(actual).hasSameElementsAs(expected);

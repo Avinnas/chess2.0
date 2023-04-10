@@ -4,7 +4,6 @@ import com.ab.chess.move.Direction;
 import com.ab.chess.move.SearchMode;
 import com.ab.chess.move.TileIterator;
 import com.ab.chess.position.Position;
-
 import java.util.*;
 
 public class Pawn extends Piece {
@@ -23,26 +22,27 @@ public class Pawn extends Piece {
           Color.WHITE, Set.of(Direction.LEFT_UP, Direction.RIGHT_UP),
           Color.BLACK, Set.of(Direction.LEFT_DOWN, Direction.RIGHT_DOWN));
 
-  public Pawn(Color color) {
-    super(color);
+  public Pawn(Color color, int tileIndex) {
+    super(color, tileIndex);
+  }
+
+
+  @Override
+  public List<Integer> findPossibleMoves(Position position) {
+    return findTiles(position, SearchMode.POSSIBLE_MOVES);
   }
 
   @Override
-  public List<Integer> findPossibleMoves(Position position, int pieceTileIndex) {
-    return findTiles(position, pieceTileIndex, SearchMode.POSSIBLE_MOVES);
-  }
-
-  @Override
-  public List<Integer> findControlledTiles(Position position, int pieceTileIndex) {
-    return findTiles(position, pieceTileIndex, SearchMode.CONTROLLED_TILES);
+  public List<Integer> findControlledTiles(Position position) {
+    return findTiles(position,  SearchMode.CONTROLLED_TILES);
   }
   // TODO: refactor to make it more readable
 
-  private List<Integer> findTiles(Position position, int pieceTileIndex, SearchMode searchMode) {
+  private List<Integer> findTiles(Position position, SearchMode searchMode) {
     List<Integer> moves = new ArrayList<>();
 
     for (Direction direction : CAPTURE_DIRECTIONS.get(color)) {
-      TileIterator captureIterator = new TileIterator(pieceTileIndex, direction);
+      TileIterator captureIterator = new TileIterator(tileIndex, direction);
       if (captureIterator.hasNext()) {
         int currentTile = captureIterator.next();
         switch (searchMode) {
@@ -58,15 +58,15 @@ public class Pawn extends Piece {
       }
     }
     if(searchMode == SearchMode.POSSIBLE_MOVES){
-      List<Integer> nonCapturingMoves = findNonCapturingMoves(position, pieceTileIndex);
+      List<Integer> nonCapturingMoves = findNonCapturingMoves(position);
       moves.addAll(nonCapturingMoves);
     }
     return moves;
   }
 
-  private List<Integer> findNonCapturingMoves(Position position, int pieceTileIndex) {
+  private List<Integer> findNonCapturingMoves(Position position) {
     List<Integer> moves = new ArrayList<>();
-    TileIterator iterator = new TileIterator(pieceTileIndex, getDirection());
+    TileIterator iterator = new TileIterator(tileIndex, getDirection());
 
     if (!iterator.hasNext()) {
       throw new IllegalStateException("Pawn reached last rank - it should be promoted before.");
@@ -82,7 +82,7 @@ public class Pawn extends Piece {
       return moves;
     }
     currentTile = iterator.next();
-    if (STARTING_TILES.get(color).contains(pieceTileIndex) && position.tileEmpty(currentTile)) {
+    if (STARTING_TILES.get(color).contains(tileIndex) && position.tileEmpty(currentTile)) {
       moves.add(currentTile);
     }
     return moves;

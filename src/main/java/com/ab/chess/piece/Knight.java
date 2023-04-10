@@ -20,21 +20,22 @@ public class Knight extends Piece {
               Direction.L_SHAPE_RIGHT_UP,
               Direction.L_SHAPE_RIGHT_DOWN);
 
-  public Knight(Color color) {
-    super(color);
+  public Knight(Color color, int tileIndex) {
+    super(color, tileIndex);
   }
 
   @Override
-  public List<Integer> findPossibleMoves(Position position, int tileIndex) {
-    return findTiles(position, tileIndex, SearchMode.POSSIBLE_MOVES);
+  public List<Integer> findPossibleMoves(Position position) {
+    return findTiles(position, SearchMode.POSSIBLE_MOVES);
   }
 
-  public List<Integer> findControlledTiles(Position position, int tileIndex) {
+  @Override
+  public List<Integer> findControlledTiles(Position position) {
 
-    return findTiles(position, tileIndex, SearchMode.CONTROLLED_TILES);
+    return findTiles(position, SearchMode.CONTROLLED_TILES);
   }
 
-  private List<Integer> findTiles(Position position, int tileIndex, SearchMode searchMode) {
+  private List<Integer> findTiles(Position position, SearchMode searchMode) {
     List<Integer> moves = new ArrayList<>();
 
     for (Direction direction : moveDirections) {

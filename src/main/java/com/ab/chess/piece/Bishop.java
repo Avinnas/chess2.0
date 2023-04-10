@@ -2,7 +2,6 @@ package com.ab.chess.piece;
 
 import com.ab.chess.move.Direction;
 import com.ab.chess.position.Position;
-
 import java.util.List;
 
 public class Bishop extends SlidingPiece {
@@ -13,17 +12,17 @@ public class Bishop extends SlidingPiece {
                   Direction.LEFT_DOWN,
                   Direction.RIGHT_DOWN);
 
-  public Bishop(Color color) {
-    super(color);
+  public Bishop(Color color, int tileIndex) {
+    super(color, tileIndex);
   }
 
   @Override
-  public List<Integer> findPossibleMoves(Position position, int pieceTileIndex) {
-    return super.findMovesInDirections(position, pieceTileIndex, moveDirections);
+  public List<Integer> findPossibleMoves(Position position) {
+    return super.findMovesInDirections(position, moveDirections);
   }
 
   @Override
-  public List<Integer> findControlledTiles(Position position, int pieceTileIndex) {
-    return super.findControlledTilesInDirections(position, pieceTileIndex, moveDirections);
+  public List<Integer> findControlledTiles(Position position) {
+    return super.findControlledTilesInDirections(position, moveDirections);
   }
 }

@@ -4,7 +4,6 @@ import com.ab.chess.move.Direction;
 import com.ab.chess.move.SearchMode;
 import com.ab.chess.move.TileIterator;
 import com.ab.chess.position.Position;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,25 +19,25 @@ public class King extends Piece {
           Direction.LEFT_DOWN,
           Direction.RIGHT_DOWN);
 
-  public King(Color color) {
-    super(color);
+  public King(Color color, int tileIndex) {
+    super(color, tileIndex);
   }
 
   @Override
-  public List<Integer> findPossibleMoves(Position position, int pieceTileIndex) {
-    return findTiles(position, pieceTileIndex, SearchMode.POSSIBLE_MOVES);
+  public List<Integer> findPossibleMoves(Position position) {
+    return findTiles(position, SearchMode.POSSIBLE_MOVES);
   }
 
   @Override
-  public List<Integer> findControlledTiles(Position position, int pieceTileIndex) {
-    return findTiles(position, pieceTileIndex, SearchMode.CONTROLLED_TILES);
+  public List<Integer> findControlledTiles(Position position) {
+    return findTiles(position, SearchMode.CONTROLLED_TILES);
   }
 
   // TODO: refactor - nesting
-  private List<Integer> findTiles(Position position, int pieceTileIndex, SearchMode searchMode) {
+  private List<Integer> findTiles(Position position, SearchMode searchMode) {
     List<Integer> moves = new ArrayList<>();
     for (Direction direction : moveDirections) {
-      TileIterator iterator = new TileIterator(pieceTileIndex, direction);
+      TileIterator iterator = new TileIterator(tileIndex, direction);
       if (iterator.hasNext()) {
         int currentTile = iterator.next();
         switch (searchMode) {
