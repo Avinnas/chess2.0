@@ -5,16 +5,7 @@ import com.ab.chess.position.Position;
 import java.util.List;
 
 public class Queen extends SlidingPiece {
-  private static final List<Direction> moveDirections =
-      List.of(
-          Direction.UP,
-          Direction.DOWN,
-          Direction.LEFT,
-          Direction.RIGHT,
-          Direction.LEFT_UP,
-          Direction.RIGHT_UP,
-          Direction.LEFT_DOWN,
-          Direction.RIGHT_DOWN);
+  private static final List<Direction> moveDirections = Direction.STRAIGHT_AND_DIAGONAL;
 
   public Queen(Color color, int tileIndex) {
     super(color, tileIndex);
@@ -29,4 +20,9 @@ public class Queen extends SlidingPiece {
   public List<Integer> findControlledTiles(Position position) {
     return super.findControlledTilesInDirections(position, moveDirections);
   }
+  @Override
+  public List<Direction> getMoveDirections() {
+    return moveDirections;
+  }
+
 }

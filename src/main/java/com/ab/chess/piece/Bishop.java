@@ -5,12 +5,7 @@ import com.ab.chess.position.Position;
 import java.util.List;
 
 public class Bishop extends SlidingPiece {
-  private static final List<Direction> moveDirections =
-          List.of(
-                  Direction.LEFT_UP,
-                  Direction.RIGHT_UP,
-                  Direction.LEFT_DOWN,
-                  Direction.RIGHT_DOWN);
+  private static final List<Direction> moveDirections = Direction.DIAGONAL;
 
   public Bishop(Color color, int tileIndex) {
     super(color, tileIndex);
@@ -24,5 +19,10 @@ public class Bishop extends SlidingPiece {
   @Override
   public List<Integer> findControlledTiles(Position position) {
     return super.findControlledTilesInDirections(position, moveDirections);
+  }
+
+  @Override
+  public List<Direction> getMoveDirections() {
+    return moveDirections;
   }
 }

@@ -3,6 +3,9 @@ package com.ab.chess.move;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.Arrays;
+import java.util.List;
+
 @AllArgsConstructor
 @Getter
 public enum Direction {
@@ -25,4 +28,20 @@ public enum Direction {
 
   private final int x;
   private final int y;
+
+  public static final List<Direction> STRAIGHT_AND_DIAGONAL =
+      List.of(UP, DOWN, LEFT, RIGHT, LEFT_UP, RIGHT_UP, LEFT_DOWN, RIGHT_DOWN);
+
+  public static final List<Direction> STRAIGHT = List.of(UP, DOWN, LEFT, RIGHT);
+
+  public static final List<Direction> DIAGONAL = List.of(LEFT_UP, RIGHT_UP, LEFT_DOWN, RIGHT_DOWN);
+
+  public static Direction oppositeOf(Direction direction) {
+
+    // THROW ?
+    return Arrays.stream(values())
+        .filter(value -> value.x == -direction.x && value.y == -direction.y)
+        .findFirst()
+        .get();
+  }
 }

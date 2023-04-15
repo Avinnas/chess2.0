@@ -6,15 +6,15 @@ import java.util.List;
 
 public class Rook extends SlidingPiece {
 
-  private static final List<Direction> moveDirections =
-          List.of(
-                  Direction.UP,
-                  Direction.DOWN,
-                  Direction.LEFT,
-                  Direction.RIGHT);
+  private static final List<Direction> moveDirections = Direction.STRAIGHT;
 
   public Rook(Color color, int tileIndex) {
     super(color, tileIndex);
+  }
+
+  @Override
+  public List<Direction> getMoveDirections() {
+    return moveDirections;
   }
 
   @Override

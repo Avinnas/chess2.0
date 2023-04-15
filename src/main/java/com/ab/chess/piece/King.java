@@ -52,4 +52,5 @@ public class King extends Piece {
     }
     return moves;
   }
+
 }

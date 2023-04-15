@@ -36,6 +36,7 @@ public class Pawn extends Piece {
   public List<Integer> findControlledTiles(Position position) {
     return findTiles(position,  SearchMode.CONTROLLED_TILES);
   }
+
   // TODO: refactor to make it more readable
 
   private List<Integer> findTiles(Position position, SearchMode searchMode) {

@@ -1,14 +1,25 @@
 package com.ab.chess.position;
 
 import com.ab.chess.piece.*;
-import lombok.Getter;
-
 import java.util.HashMap;
 import java.util.Map;
 
-@Getter
 public class Position {
   private Map<Integer, Piece> pieces = new HashMap<>();
+
+  // TODO: Update
+  private Color nextColor = Color.WHITE;
+
+  public King getKing(Color color){
+    return (King) pieces.values().stream()
+            .filter(piece -> piece instanceof King && piece.getColor() == color)
+            .toList()
+            .stream().findFirst().get();
+  }
+
+  public Color getNextColor(){
+    return nextColor;
+  }
 
   public Position() {}
 
@@ -52,8 +63,7 @@ public class Position {
     if (piece == null) {
       return false;
     }
-    Color pieceColor = piece.getColor();
-    return pieceColor.equals(color);
+    return piece.isFriend(color);
   }
 
   public boolean tileOccupiedByEnemy(int tileIndex, Color color) {
@@ -61,8 +71,12 @@ public class Position {
     if (piece == null) {
       return false;
     }
-    Color pieceColor = piece.getColor();
-    return !pieceColor.equals(color);
+    return piece.isEnemy(color);
+  }
+
+  public Piece getPiece(int tileIndex){
+    // TODO: throw when no piece?
+    return pieces.get(tileIndex);
   }
 
   public boolean tileEmpty(int tileIndex){

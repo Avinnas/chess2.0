@@ -35,6 +35,7 @@ public class Knight extends Piece {
     return findTiles(position, SearchMode.CONTROLLED_TILES);
   }
 
+
   private List<Integer> findTiles(Position position, SearchMode searchMode) {
     List<Integer> moves = new ArrayList<>();
 

@@ -53,4 +53,7 @@ public abstract class SlidingPiece extends Piece {
     }
     return moves;
   }
+
+  @Override
+  public abstract List<Direction> getMoveDirections();
 }
