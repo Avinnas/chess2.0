@@ -25,10 +25,14 @@ public abstract class Piece {
   }
 
   public boolean isFriend(Color other){
-    return color.isFriend(other);
+    return color == other;
   }
   
   public boolean isEnemy(Color other){
-    return color.isEnemy(other);
+    return !this.isFriend(other);
+  }
+
+  public boolean isBlockable(){
+    return false;
   }
 }

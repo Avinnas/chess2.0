@@ -36,11 +36,11 @@ public enum Direction {
 
   public static final List<Direction> DIAGONAL = List.of(LEFT_UP, RIGHT_UP, LEFT_DOWN, RIGHT_DOWN);
 
-  public static Direction oppositeOf(Direction direction) {
+  public Direction opposite() {
 
     // THROW ?
     return Arrays.stream(values())
-        .filter(value -> value.x == -direction.x && value.y == -direction.y)
+        .filter(value -> value.x == x && value.y == -y)
         .findFirst()
         .get();
   }
